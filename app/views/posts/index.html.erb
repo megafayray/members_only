@@ -1,0 +1,22 @@
+<h1>All The Hot Goss</h1>
+
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <%= link_to post.title, post_path(post) %>
+      <% if user_signed_in? %>
+        Posted by: <%= post.user.username %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "New Post", new_post_path %>
+
+<br>
+
+<% if user_signed_in? %>
+  <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %>
+<% else %>
+  <%= link_to "Sign In", new_user_session_path %>
+<% end %>

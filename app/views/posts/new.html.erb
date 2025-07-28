@@ -1,0 +1,25 @@
+<h1>Spill The Tea</h1>
+
+<%= form_with model: @post do |form| %>
+    <h2> Title </h2>
+    <%= form.text_field :title, placeholder: "Enter your clickbait title here", size: 40 %>
+    <h2> Story </h2>
+    <%= form.text_area :body, placeholder: "Say whatchu gotta say", size: "70x5" %>
+    <br>
+    <%= form.submit "Submit" %>
+<% end %>
+
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <br>
+
+  <%= link_to "See All The Other Hot Goss", posts_path %>
